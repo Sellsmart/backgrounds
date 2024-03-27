@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nona Input</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        button {
+            background-color: #f6e6c0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+        }
+
+        html {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="nonainput.js"></script>
+    <div class="topblock">
+        <div class="roundcontainer"><img alt="Nona Backgrounds Logo" src="nonabackgrounds.webp" style="width: 45px;
+            border-radius: 29px;">
+            <h1 style="margin: 0px;">Nona Input</h1>
+        </div>
+
+    </div>
+    <div class="roundcontainer header">
+        <img alt="companylogo" src="goatfilterslogo.png">
+        <h2 class="topheader" id="topheadline">Goatfilters</h2>
+    </div>
+    <div class="informationsheet">
+        <h2>💭</h2>
+        <h2>Chatbot Instructions</h3>
+        <input type="text" id="instructions" name="instructions"><br><br>
+        <button onclick="saveinstructions()">Save ✅</button>
+
+    </div>
+    <div class="informationsheet">
+        <h2>📖</h2>
+        <h2>Chatbot Database</h3>
+
+            <div id="variablesTable" class="variables"></div>
+
+            <div class="owndiv">
+                <button onclick="updateAll()">Update All Changes ♻️</button>
+
+                <button id="showAddFormButton">Add More ➕</button>
+            </div>
+    </div>
+    <div id="addPairOverlay" class="overlay" style="display: none;">
+        <div class="overlay-content">
+            <h2>Add New Information 👩‍💻</h2>
+            <label for="newKey">Category:</label>
+            <input type="text" id="newKey" name="newKey"><br><br>
+            <label for="newValue">Information:</label>
+            <input type="text" id="newValue" name="newValue"><br><br>
+            <button onclick="addNewPair()">Add ➕</button>
+            <button onclick="closeOverlay()">Cancel ❌</button>
+        </div>
+    </div>
+    <div id="chatbotColors">
+
+        <div class="splitter">
+
+            <h2>Chatbot Colors 🎨</h2>
+            <label for="generalColor">General Color:</label>
+            <input type="color" id="generalColor"><br><br>
+            <label for="boxColor">Box Color:</label>
+            <input type="color" id="boxColor"><br><br>
+            <label for="inputFieldColor">Input Field Color:</label>
+            <input type="color" id="inputFieldColor"><br><br>
+            <label for="textColor">Text Color:</label>
+            <input type="color" id="textColor"><br><br>
+            <button onclick="updateChatbotColors()">Update Colors ♻️</button>
+        </div>
+
+        <div class="splitter">
+            <div class="app">
+                <div class="chatfield" style="background-color: #ffffff;">
+                    <p class="chattext" style="color: #000000;">Hi 👋, I am your personal shopping assistant. Ask me
+                        anything you want to know!</p>
+                </div>
+                <div class="chatfield" style="background-color: #ffffff;">
+                    <p class="chattext" style="color: #000000;">Hi 😄, just customise this chatbot on the right site.
+                        The sky is the limit 🤩</p>
+                </div>
+                <div class="inputfield" style="background-color: #ffffff;">
+                    <p class="chattext" style="color: #000000;">Ask something...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="logosSection">
+        <div class="splitter">
+
+            <h2>Logos 💡</h2>
+            <label for="logoLink">Logo Link 🔗:</label>
+            <input type="text" id="logoLink"><br><br>
+            <label for="userImageLink">User Image Link 🔗:</label>
+            <input type="text" id="userImageLink"><br><br>
+            <button onclick="updateLogos()">Update Logos ♻️</button>
+        </div>
+        <div class="splitter">
+            <img class="logodisplayimage" id="logoimage1"
+                src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png">
+            <img class="logodisplayimage" id="logoimage2"
+                src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png">
+        </div>
+
+    </div>
+
+    <div id="defaultAnswers">
+        <h2>Default Opening Messages 🎯</h2>
+        <div id="defaultAnswersList"></div>
+
+
+        <input type="text" id="newAnswer" placeholder="Add new answer...">
+        <button onclick="addDefaultAnswer()">Add Answer</button>
+    </div>
+
+    <div id="productsSection">
+        <h2>Products</h2>
+        <div id="productsList"></div>
+        <input type="text" id="newProductTitle" placeholder="Product Title">
+        <input type="text" id="newProductImageUrl" placeholder="Image URL">
+        <input type="text" id="newProductLink" placeholder="Product Link">
+        <input type="text" id="newProductButtonText" placeholder="Button Text">
+        <button onclick="addProduct()">Add Product</button>
+    </div>
+
+
+</body>
+
+</html>

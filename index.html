@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <title>Nona Backgrounds</title>
+</head>
+
+<body id="body">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <div class="entirechatoverlay2" id="bigoverlay" style="display: none;">
+        <h3 class="allviewsheader">All views over the course of last 2 months</h3>
+        <button id="closebigviews">Close</button>
+        <div class="allwebsiteviewsbig">
+
+        </div>
+    </div>
+
+    <div class="topblock">
+        <div class="roundcontainer"><img alt="Nona Backgrounds Logo" src="nonabackgrounds.webp" style="width: 45px;
+            border-radius: 29px;">
+            <h1 style="margin: 0px;">Nona Backgrounds</h1>
+        </div>
+
+    </div>
+    <div class="roundcontainer header">
+        <img alt="companylogo" src="goatfilterslogo.png">
+        <h2 class="topheader" id="topheadline">Goatfilters</h2>
+    </div>
+    <div class="oneline">
+        <div class="viewbox">
+            <a href="#ti2section" style="text-decoration:none; color: inherit;">
+                <p class="uppertext">Today's</p>
+                <p id="viewtext">Views: None</p>
+                <!-- <img alt="up/down" class="updownimg"> -->
+            </a>
+        </div>
+        
+        <div class="leadsection">
+            <p class="leadstext">Generated Leads</p>
+            <a href="https://download.com" class="download">Download</a>
+        </div>
+    </div>
+    <div class="threeitems">
+        <div class="oneofthree">
+            <h3 class="locationheader">Views per location</h3>
+            <div class="locations">
+                
+                
+            </div>
+        </div>
+        <div class="oneofthree">
+
+            <h3 class="pathsheader">Most used paths</h3>
+            
+            
+            <div class="mostusedpaths"></div>
+        </div>
+        <div class="oneofthree">
+      
+            <h3 class="websiteviewheader">View behaviour</h3>
+ 
+            <div class="neworreoccusers">
+                <div class="reocusers">
+                    <h3 class="reoccurheader">Reoccuring users: </h3>
+                    <p class="percentagereoc"></p>
+                </div>
+                <div class="newusers">
+                    <h3 class="newuserheader">Single time users: </h3>
+                    <p class="newuserspercentage"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="threeitems" id="ti2section">
+        <div class="oneofthree">
+            <h3 class="websiteviewheader">Most viewed websites</h3>
+            <div class="viewsperwebsite">
+
+            </div>
+            <button id="showChartButton">Show Chart</button>
+            
+        </div>
+       
+        <div class="oneofthree">
+           
+            <div class="requestedproducts">
+
+            
+            </div>
+        </div>
+        <div class="oneofthree">
+            <h3 class="phonepcheader">Device use:</h3>
+            <div class="devices">
+
+            </div>
+        </div>
+    </div>
+    <div class="socials">
+        <div class="threeitems">
+            <div class="oneofthree">
+                <div class="sociallogin" id="tt">
+                    <img src="Assets/tt.png" alt="Tiktok Logo" class="socialimage">
+                    <p class="socialtitle">TikTok</p>
+                    <input type="text" name="tiktokinput" placeholder="@..." id="ttinput">
+                    <button type="button" id="ttbutton" class="socialbutton">Ansehen...</button>
+                </div>
+                <div class="socialsection" id="ttsec">
+                    <img src="Assets/tt.png" alt="Tiktok Logo" class="socialimage">
+                    <p class="socialtitle">TikTok</p>
+                    <p class="socialtop">Follower</p>
+                    <p class="socialcounter" id="ttcounter">50</p>
+                    <button type="button" onclick="" class="socialbutton" id="ttback">back...</button>
+                </div>
+            </div>
+            
+            <div class="oneofthree">
+                <div class="sociallogin" id="yt">
+                    <img src="Assets/yt.png" alt="Youtube Logo" class="socialimage">
+                    <p class="socialtitle">YouTube</p>
+                    <input type="text" name="youtubeinput" placeholder="..." id="ytinput">
+                    <button type="button" id="ytbutton" class="socialbutton">Ansehen...</button>
+                </div>
+                <div class="socialsection" id="ytsec">
+                    <img src="Assets/yt.png" alt="Youtube Logo" class="socialimage">
+                    <p class="socialtitle">YouTube</p>
+                    <p class="socialtop">Abbonenten</p>
+                    <p class="socialcounter" id="ytcounter">50</p>
+                    <button type="button" onclick="" class="socialbutton" id="ytback">back...</button>
+                </div>
+            </div>
+            
+            <div class="oneofthree">
+                <div class="sociallogin" id="insta">
+                    <img src="Assets/insta.png" alt="Instagram Logo" class="socialimage">
+                    <p class="socialtitle">Instagram</p>
+                    <input type="text" name="instainput" placeholder="@..." id="instainput">
+                    <button type="button" id="instabutton" class="socialbutton">Ansehen...</button>
+                </div>
+                <div class="socialsection" id="instasec">
+                    <img src="Assets/insta.png" alt="Instagram Logo" class="socialimage">
+                    <p class="socialtitle">Instagram</p>
+                    <p class="socialtop">Follower</p>
+                    <p class="socialcounter" id="instacounter">50</p>
+                    <button type="button" onclick="" class="socialbutton" id="instaback">back...</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2 class="quheader">Recent questions</h2>
+    <div id="qaaContainer">
+        <div class="qaa">
+            <div class="questions">
+                <p class="questionsheader">Question</p>
+            </div>
+            <div class="answers">
+                <p class="answersheader">Answer</p>
+            </div>
+            <div class="time">
+                <p class="timetext">17:02:14, 16.02.2024</p>
+            </div>
+            <div class="location">
+                <p class="locationtext">Tübingen, Baden-Wurttemberg</p>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+    <h3 class="usefulheader">Found the chatbot helpful:</h3>
+    <div class="chatuseful">
+
+        <div class="useful">
+            <p style="margin-right: 30px;" class="usefultext">60%</p>
+            <img alt="thumb up" src="thumbs-up.png" style="width: 50px; border-radius: 0px;">
+            
+        </div>
+        <div class="notuseful">
+            <img alt="thumb down" src="thumb-down.png" style="width: 50px; border-radius: 0px">
+            <p class="notusefultext" style="margin-left: 30px;">40%</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
