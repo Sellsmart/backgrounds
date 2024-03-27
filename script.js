@@ -11,7 +11,7 @@ async function getFirebaseValueFromServer(path) {
     try {
         console.log("Trying to get data...");
         const key = getLocalStorageItem("onetimepw");
-        const response = await fetch(`http://localhost:5102/getData?path=${path}&pw=${key}`);
+        const response = await fetch(`https://main-w02c.onrender.com/getData?path=${path}&pw=${key}`);
         const data = await response.json();
 
         return data;
