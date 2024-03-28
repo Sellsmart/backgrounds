@@ -2,7 +2,7 @@ const wantsdatabase = getLocalStorageItem("chosendatabase");
 console.log("trying to get: " + wantsdatabase);
 
 
-const serveradress = "http://localhost:5102/";
+const serveradress = "https://main-w02c.onrender.com/";
 
 // Client-side code
 async function getFirebaseValueFromServer(path) {
@@ -10,7 +10,7 @@ async function getFirebaseValueFromServer(path) {
         console.log("Trying to get data...");
         const key = getLocalStorageItem("onetimepw");
         path = wantsdatabase + "/" + path;
-        const response = await fetch(`http://localhost:5102/getData?path=${path}&pw=${key}`);
+        const response = await fetch(`https://main-w02c.onrender.com/getData?path=${path}&pw=${key}`);
         const data = await response.json();
 
         return data;
