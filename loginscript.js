@@ -166,7 +166,7 @@ function activateChoosePanel() {
 
     // Redirect to index.html after 10 seconds
     setTimeout(() => {
-      window.location.href = "index.html";
+      window.location.href = "backgrounds.html";
     }, 100); // 10000 milliseconds = 10 seconds
   });
 
