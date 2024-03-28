@@ -2,7 +2,7 @@ const wantsdatabase = getLocalStorageItem("chosendatabase");
 console.log("trying to get: " + wantsdatabase);
 
 
-serveradress = "https://main-w02c.onrender.com/";
+const serveradress = "http://localhost:5102/";
 
 // Client-side code
 async function getFirebaseValueFromServer(path) {
@@ -10,7 +10,7 @@ async function getFirebaseValueFromServer(path) {
         console.log("Trying to get data...");
         const key = getLocalStorageItem("onetimepw");
         path = wantsdatabase + "/" + path;
-        const response = await fetch(`https://main-w02c.onrender.com/getData?path=${path}&pw=${key}`);
+        const response = await fetch(`http://localhost:5102/getData?path=${path}&pw=${key}`);
         const data = await response.json();
 
         return data;
@@ -100,9 +100,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("topheadline").innerHTML = capitalizeFirstLetter(wantsdatabase);
 
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 });
 
 function addEventListeners() {
@@ -269,7 +269,7 @@ async function populateAllData() {
     populateProducts(alldata.products);
     populateinstruction(alldata);
 }
- 
+
 // Each populate function now takes a part of the allData structure:
 function populateChatbotColors(colors) {
     if (colors && colors.chatbot) {
@@ -317,12 +317,12 @@ function populateLogos(logos) {
 
 function clearstring(data) {
     return data
-      .replace("-hashtag-", "#")
-      .replace(/-dot-/g, ".")
-      .replace(/-slash-/g, "/")
-      .replace("%3F", "?") // Replace encoded question mark
-      .replace("%3D", "="); // Replace encoded equals sign
-  }
+        .replace("-hashtag-", "#")
+        .replace(/-dot-/g, ".")
+        .replace(/-slash-/g, "/")
+        .replace("%3F", "?") // Replace encoded question mark
+        .replace("%3D", "="); // Replace encoded equals sign
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
     await populateAllData(); // This replaces individual populate calls.
@@ -433,40 +433,58 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("logoimage2").src = logolink;
     });
     // Define the options for the Intersection Observer
-const options = {
-    root: null, // It means we're observing intersections with the viewport
-    rootMargin: '0px',
-    threshold: 0.4 // Callback is executed when 30% of the target is visible
-  };
-  
-  // Define the callback function for the Intersection Observer
-  const callback = (entries, observer) => {
-    entries.forEach(entry => {
-      // Check if the element is intersecting
-      if (entry.isIntersecting) {
-        // Add the animation class to the element
-        entry.target.style.animation = 'flyInUnblurInput 1s forwards';
-      }
+    const options = {
+        root: null, // It means we're observing intersections with the viewport
+        rootMargin: '0px',
+        threshold: 0.4 // Callback is executed when 30% of the target is visible
+    };
+
+    // Define the callback function for the Intersection Observer
+    const callback = (entries, observer) => {
+        entries.forEach(entry => {
+            // Check if the element is intersecting
+            if (entry.isIntersecting) {
+                // Add the animation class to the element
+                entry.target.style.animation = 'flyInUnblurInput 1s forwards';
+            }
+        });
+    };
+
+    // Create the Intersection Observer with the callback and options
+    const observer = new IntersectionObserver(callback, options);
+
+    // Select the elements you want to observe
+    const elements = document.querySelectorAll('.informationsheet, #chatbotColors, #logosSection, #defaultAnswers, #productsSection');
+
+    // Start observing the selected elements
+    elements.forEach(element => {
+        observer.observe(element);
     });
-  };
-  
-  // Create the Intersection Observer with the callback and options
-  const observer = new IntersectionObserver(callback, options);
-  
-  // Select the elements you want to observe
-  const elements = document.querySelectorAll('.informationsheet, #chatbotColors, #logosSection, #defaultAnswers, #productsSection');
-  
-  // Start observing the selected elements
-  elements.forEach(element => {
-    observer.observe(element);
-  });
-  
+
 });
-function saveinstructions(){
+function saveinstructions() {
     const newinstructions = document.getElementById("instructions").value;
     setFirebaseValueFromServer("general", newinstructions);
 }
-function populateinstruction(data){
+function populateinstruction(data) {
     document.getElementById("instructions").value = clearstring(data.general);
 
+}
+
+
+async function restartserver() {
+    const response = await fetch(serveradress + "restartserver", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            key: getLocalStorageItem("onetimepw")
+        })
+    });
+
+    console.log("This is the response we get: ");
+    responsedata = await response.json();
+
+    alert(responsedata.server);
 }
