@@ -2,7 +2,7 @@ const wantsdatabase = getLocalStorageItem("chosendatabase");
 console.log("trying to get: " + wantsdatabase);
 
 
-const serveradress = "https://main-w02c.onrender.com/";
+const serveradress = "http://localhost:5102/";
 
 // Client-side code
 async function getFirebaseValueFromServer(path) {
@@ -10,7 +10,7 @@ async function getFirebaseValueFromServer(path) {
         console.log("Trying to get data...");
         const key = getLocalStorageItem("onetimepw");
         path = wantsdatabase + "/" + path;
-        const response = await fetch(`https://main-w02c.onrender.com/getData?path=${path}&pw=${key}`);
+        const response = await fetch(`http://localhost:5102/getData?path=${path}&pw=${key}`);
         const data = await response.json();
 
         return data;
@@ -316,12 +316,18 @@ function populateLogos(logos) {
 
 
 function clearstring(data) {
-    return data
+
+    if(data){
+        return data
         .replace("-hashtag-", "#")
         .replace(/-dot-/g, ".")
         .replace(/-slash-/g, "/")
         .replace("%3F", "?") // Replace encoded question mark
         .replace("%3D", "="); // Replace encoded equals sign
+    }
+    else{
+        return "";
+    }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -331,15 +337,19 @@ async function updateProduct(key) {
     // Retrieve the updated values from the input fields
     const updatedProduct = {
         title: document.getElementById(`${key}_title`).value,
+        keywords: document.getElementById(`${key}_keywords`).value,
         image: document.getElementById(`${key}_image`).value,
         link: document.getElementById(`${key}_link`).value,
+        actions: document.getElementById(`${key}_actions`).value,
         buttonText: document.getElementById(`${key}_buttonText`).value,
     };
 
     // Update each attribute individually in Firebase
     await setFirebaseValueFromServer(`products/${key}/title`, updatedProduct.title);
+    await setFirebaseValueFromServer(`products/${key}/keywords`, updatedProduct.keywords);
     await setFirebaseValueFromServer(`products/${key}/image`, updatedProduct.image);
     await setFirebaseValueFromServer(`products/${key}/link`, updatedProduct.link);
+    await setFirebaseValueFromServer(`products/${key}/actions`, updatedProduct.actions);
     await setFirebaseValueFromServer(`products/${key}/buttonText`, updatedProduct.buttonText);
 
     // Refresh the product list
@@ -358,8 +368,10 @@ async function populateProducts() {
         productDiv.innerHTML = `
             <div>
                 Title: <input type="text" id="${key}_title" value="${clearstring(product.title)}"><br>
+                Keywords: <input type="text" id="${key}_keywords" value="${clearstring(product.keywords)}"><br>
                 Image URL: <input type="text" id="${key}_image" value="${clearstring(product.image)}"><br>
                 Link: <input type="text" id="${key}_link" value="${clearstring(product.link)}"><br>
+                Actions: <input type="text" id="${key}_actions" value="${clearstring(product.actions)}"><br>
                 Button Text: <input type="text" id="${key}_buttonText" value="${clearstring(product.buttonText)}"><br>
                 <button onclick="updateProduct('${key}')" class="productbutton">Update</button>
                 <button onclick="removeProduct('${key}')" id="removebutton" class="productbutton">Remove</button>
@@ -371,24 +383,34 @@ async function populateProducts() {
 async function addProduct() {
     const product = {
         title: document.getElementById('newProductTitle').value,
+        keywords: document.getElementById("newProductKeywords").value,
         image: document.getElementById('newProductImageUrl').value,
         link: document.getElementById('newProductLink').value,
+        actions: document.getElementById("newProductActions").value,
         buttonText: document.getElementById('newProductButtonText').value
     };
     if (product.title && product.image && product.link && product.buttonText) {
         const newKey = `product_${Date.now()}`; // Use current timestamp as unique key
         // Save each property individually
         await setFirebaseValueFromServer(`products/${newKey}/title`, product.title);
+        await setFirebaseValueFromServer(`products/${newKey}/keywords`, product.keywords);
         await setFirebaseValueFromServer(`products/${newKey}/image`, product.image);
         await setFirebaseValueFromServer(`products/${newKey}/link`, product.link);
+        await setFirebaseValueFromServer(`products/${newKey}/actions`, product.actions);
         await setFirebaseValueFromServer(`products/${newKey}/buttonText`, product.buttonText);
+
 
         await populateProducts(); // Refresh the list
         // Clear input fields
         document.getElementById('newProductTitle').value = '';
+        document.getElementById('newProductKeywords').value = '';
         document.getElementById('newProductImageUrl').value = '';
         document.getElementById('newProductLink').value = '';
         document.getElementById('newProductButtonText').value = '';
+        document.getElementById("newProductActions").value = '';
+    }
+    else{
+        alert("You have to fill in everything except actions and keywords");
     }
 }
 
