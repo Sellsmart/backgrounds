@@ -2,7 +2,7 @@ const wantsdatabase = getLocalStorageItem("chosendatabase");
 console.log("trying to get: " + wantsdatabase);
 
 
-const serveradress = "http://localhost:5102/";
+const serveradress = "https://main-w02c.onrender.com/";
 
 // Client-side code
 async function getFirebaseValueFromServer(path) {
